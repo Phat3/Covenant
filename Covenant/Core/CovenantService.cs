@@ -1576,6 +1576,15 @@ namespace Covenant.Core
             {
                 ILBytes = Utilities.Compress(ILBytes);
             }
+            
+            System.IO.Directory.CreateDirectory("/tmp/covenant_files");
+            string filePath = "/tmp/covenant_files/" + System.IO.Path.GetRandomFileName();
+            using (System.IO.FileStream fs = System.IO.File.Create(filePath)) 
+            {
+                fs.Write(ILBytes);
+                System.Console.WriteLine("Grunt dropped to {0}\n", filePath);
+            }
+
             return ILBytes;
         }
 
